@@ -1,0 +1,128 @@
+<template name="Index">
+  <!-- Fixed navbar -->
+     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="/">TextSender</a>
+         </div>
+         <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
+                {{#each settings}}
+                  <li><a href=""><input type="text" placeholder="SID Twilio" id="sidEdit" value="{{sid}}"></a></li>
+                  <li><a href=""><input type="text" placeholder="TOKEN Twilio" id="tokenEdit" value="{{token}}"></a></li>
+                  <li><a href=""><input type="text" placeholder="NUMBER Twilio" id="phoneTwilioEdit" value="{{phoneTwilio}}"></a></li>
+                {{/each}}
+            {{/if}}
+            <li class="active"><a>{{>loginButtons}}</a></li>
+           </ul>
+         </div><!--/.nav-collapse -->
+       </div>
+     </div>
+
+     <div class="container">
+
+      {{#if currentUser}}
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th class="text-center">First Name</th>
+                      <th class="text-center">Last Name</th>
+                      <th class="text-center">Company</th>
+                      <th class="text-center">Phone Number</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each customers}}
+                      <tr class="">
+                        <td class="text-center">{{firstName}}</td>
+                        <td class="text-center">{{lastName}}</td>
+                        <td class="text-center">{{company}}</td>
+                        <td class="text-center">{{phoneNumber}}</td>
+                        <td class="status text-center">{{status}}</td>
+                        <td class="delete text-center">X</td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+
+      <br>
+      <br>
+
+      <form class="form-inline text-center" id="formCustomer">
+        <div class="form-group">
+          <input type="text" class="input2 form-control" name="First Name" id="firstName" autocomplete="off" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="input2 form-control" name="Last Name" id="lastName" autocomplete="off" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="input2 form-control" name="Company" id="company" autocomplete="off" placeholder="Company">
+        </div>
+        <div class="form-group">
+          <input type="number" class="input2 form-control" name="Phone Number" id="phoneNumber" autocomplete="off" placeholder="Phone Number">
+        </div>
+        <div class="form-group">
+          <button type="submit" id="submitCustomer" class="btn btn-primary">Add Customer</button>
+        </div>
+      </form>
+      <br>
+      <br>
+
+      <div class="text-center">
+        <h4>Message</h4>
+        <p><b>Example:</b> 'Hey user access your new features at enterprise.com'</p>
+        <small>'user' is replaced by the first name.</small>
+        <br>
+        <br>
+          {{#each settings}}
+            <div class="col-lg-8 col-lg-offset-2">
+              <input type="text" value="{{message}}" placeholder='Your message' class="form-control" id="messageEdit">
+            </div>
+          {{/each}}
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <div class="text-center">
+        <button class="btn btn-default btn-lg" id="submitText">Send Text</button>
+      </div>
+
+
+      {{else}}
+
+        <div class="jumbotron">
+         <h1 class="text-center">Text message a list with Twilio.</h1>
+         <p class="text-center"><b>Setup:</b> Create an account, add your Twilio SID & SecretKey <br>and Twilio phone number(17577850324) without +.</p>
+         <p class="text-center"><b>Usage:</b>Add a list of possible customers and click send.<br> Ps:use the phone number with nation code all together without + </p>
+         <h5 class="text-center">If you want to send again to the same possible customer change the status by clicking on it.</h5>
+         <br>
+        </div>
+      {{/if}}
+     </div> <!-- /container -->
+
+</template>
+
+
+<template name="settings">
+
+</template>

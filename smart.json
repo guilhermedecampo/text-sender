@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "iron-router": {},
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {},
+    "moment": {},
+    "twilio-meteor": {},
+    "collection2": {},
+    "houston": {},
+    "collection-hooks": {}
+  }
+}

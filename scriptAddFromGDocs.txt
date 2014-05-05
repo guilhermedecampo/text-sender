@@ -1,0 +1,18 @@
+FROM: https://coderwall.com/p/duapqq
+$.getJSON("http://cors.io/spreadsheets.google.com/feeds/list/YOUR-DOC-KEY/od6/public/values?alt=json", function(data) {
+
+  _.each(data.feed.entry, function(line) {
+      Customers.insert({
+        firstName: line.gsx$firstname.$t,
+        lastName: line.gsx$lastname.$t,
+        company: line.gsx$company.$t,
+        phoneNumber: line.gsx$phonenumber.$t,
+        status: 'waiting',
+        ownerId: Meteor.userId()
+      });
+    });
+});
+
+_.each(Customers.find().fetch(), function(user) {
+  Customers.remove(user._id);
+});
